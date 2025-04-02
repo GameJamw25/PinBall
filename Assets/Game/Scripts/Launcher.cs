@@ -19,48 +19,48 @@ public class Launcher : MonoBehaviour
     private float currentLaunchForce;
     private bool isCharging;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            isCharging = true;
-            currentLaunchForce = minLaunchForce;
-            Debug.Log("Charging");
-        }
-
-        if (isCharging)
-        {
-            currentLaunchForce += chargeSpeed * Time.deltaTime;
-            currentLaunchForce = Mathf.Clamp(currentLaunchForce, minLaunchForce, maxLaunchForce);
-
-            if (powerBar != null)
-            {
-              float fillValue = (currentLaunchForce - minLaunchForce) / (maxLaunchForce - minLaunchForce);
-                powerBar.fillAmount = fillValue;
-            }
-            
-        }
-        
-        if (Input.GetKeyUp(KeyCode.Space) && isCharging)
-        {
-            isCharging= false;
-            if(powerBar!=null)
-            {
-                powerBar.fillAmount = 0f;
-            }
-            LaunchPinball();
-        }
-        
+  private void Update() {
+    if (Input.GetKeyDown(KeyCode.Space)) {
+      isCharging = true;
+      currentLaunchForce = minLaunchForce;
+      Debug.Log("Charging");
     }
 
-    void LaunchPinball()
-    {
-        if(ballRb != null && launchDirection != null)
-        {
-            ballRb.AddForce(-launchDirection.right * currentLaunchForce);
-        }else
-        {
-            Debug.LogWarning("PinBall or Launch Direction not assigned");
-        }
+    if (isCharging && ballRb != null) {
+      currentLaunchForce += chargeSpeed * Time.deltaTime;
+      currentLaunchForce = Mathf.Clamp(currentLaunchForce, minLaunchForce, maxLaunchForce);
+
+      // Animate The UI Power Bar
+      if (powerBar != null) {
+        float fillValue = (currentLaunchForce - minLaunchForce) / (maxLaunchForce - minLaunchForce);
+          powerBar.fillAmount = fillValue;
+      }
     }
+        
+    if (Input.GetKeyUp(KeyCode.Space) && isCharging && ballRb != null) {
+      isCharging= false;
+      if(powerBar!=null) {
+        powerBar.fillAmount = 0f;
+      }
+      LaunchPinball();
+    }
+  }
+  void OnTriggerEnter(Collider other) {
+    if (other.CompareTag("Ball")) {
+      ballRb = other.GetComponent<Rigidbody>();
+    }
+  }
+  private void OnTriggerExit(Collider other) {
+    if (other.CompareTag("Ball")) {
+      ballRb = null;
+    }
+  }
+
+  void LaunchPinball() {
+    if(ballRb != null && launchDirection != null) {
+        ballRb.AddForce(-launchDirection.right * currentLaunchForce);
+    } else {
+        Debug.LogWarning("PinBall or Launch Direction not assigned");
+    }
+  }
 }

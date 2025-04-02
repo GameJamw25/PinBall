@@ -1,12 +1,15 @@
+using System.Threading.Tasks;
 using UnityEditor.Rendering;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 
-public class Ball : MonoBehaviour {
+public class GumBall: Ball {
   //private Rigidbody rb;
 
-  void Start() {
+  async void Start() {
+    await Task.Delay(30000);
+    Destroy(gameObject);
     //rb = GetComponent<Rigidbody>();
 
     //// Ensure the ball is affected by gravity and moves naturally
@@ -18,12 +21,7 @@ public class Ball : MonoBehaviour {
     //// Ensure constraints are off for natural movement
     //rb.constraints = RigidbodyConstraints.None;
   }
-  private void OnEnable() {
-    GameManager.Instance.AddBall();
-  }
-  private void OnDisable() {
-    GameManager.Instance.RemoveBall();
-  }
+
 }
 
 

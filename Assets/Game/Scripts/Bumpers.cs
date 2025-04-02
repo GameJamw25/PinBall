@@ -12,7 +12,7 @@ public class Bumpers : MonoBehaviour
             {
                 Vector3 impactDirection = (collision.transform.position - transform.position).normalized;
                 ballRb.AddForce(impactDirection * impulseForce, ForceMode.Impulse);
-                ScoreManager.Instance.AddScore(100);
+                GameManager.Instance.AddScore(100);
             }
         }
     }
