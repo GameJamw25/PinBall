@@ -8,13 +8,22 @@ public class TitleMenu : EchoMenu
     [SerializeField]
     private EchoMenu creditsMenu;
 
+    public AudioClip selection;
+
 
     public void OnStartClick()
     {
         SceneManager.LoadScene("Assets");
+        AudioManager.Instance.gameEnterSound();
     }
-    public async void OnOptionsClick() { await MenuManager.Instance.OpenMenu(optionsMenu); }
-    public async void OnCreditsClick() { await MenuManager.Instance.OpenMenu(creditsMenu); }
+    public async void OnOptionsClick() {
+        AudioManager.Instance.menuSelectSound();
+        await MenuManager.Instance.OpenMenu(optionsMenu);
+    }
+    public async void OnCreditsClick() {
+        AudioManager.Instance.menuSelectSound();
+        await MenuManager.Instance.OpenMenu(creditsMenu);
+    }
     public void OnExitClick()
     {
 #if UNITY_EDITOR

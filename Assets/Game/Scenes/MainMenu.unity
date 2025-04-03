@@ -655,6 +655,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   optionsMenu: {fileID: 990541432}
   creditsMenu: {fileID: 410910428}
+  selection: {fileID: 0}
 --- !u!95 &184294785
 Animator:
   serializedVersion: 7
@@ -1607,6 +1608,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5268344249102508634, guid: 652440dba136d5e4784aadc2ad080000, type: 3}
+      propertyPath: gameEnter
+      value: 
+      objectReference: {fileID: 8300000, guid: c24a740afc3d4d54e895aade1f456ecf, type: 3}
+    - target: {fileID: 5268344249102508634, guid: 652440dba136d5e4784aadc2ad080000, type: 3}
+      propertyPath: menuSelection
+      value: 
+      objectReference: {fileID: 8300000, guid: c751003b524c5ba4c9737d1abfe9b26e, type: 3}
     - target: {fileID: 6173006640380571114, guid: 652440dba136d5e4784aadc2ad080000, type: 3}
       propertyPath: m_Name
       value: AudioManager
