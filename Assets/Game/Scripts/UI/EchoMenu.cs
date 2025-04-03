@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 public class EchoMenu : MonoBehaviour {
-  private Animator animator;
+  protected Animator animator;
   public virtual async Awaitable MenuOpen() {
     animator.speed = 1;
     await Awaitable.NextFrameAsync();

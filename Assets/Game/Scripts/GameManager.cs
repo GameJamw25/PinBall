@@ -17,6 +17,7 @@ public class GameManager : Singelton<GameManager> {
   public AudioClip highScoreSound;
 
   // Game stats and Values
+  [SerializeField]
   private int score = 0;
   public int abilityCharge = 0;
   private int balls = 0; // Balls in play
@@ -79,4 +80,6 @@ public class GameManager : Singelton<GameManager> {
   #endregion
 
   public Sprite GetCharImage() { return selectedCharacter.characterSprite; }
+
+  public int GetScore() => score;
 }
