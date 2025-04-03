@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6123da8c8809f540ba6f3e17e7893a3, type: 3}
+  m_Name: Ding
+  m_EditorClassIdentifier: 
+  SFXclips:
+  - {fileID: 8300000, guid: f7ef8f53f41a7974b8772fda66319907, type: 3}
+  - {fileID: 8300000, guid: e39abf5ad18e0e64ea6795ddb558fe0b, type: 3}
+  - {fileID: 8300000, guid: 905a807ef0577404f9ef102f82879858, type: 3}

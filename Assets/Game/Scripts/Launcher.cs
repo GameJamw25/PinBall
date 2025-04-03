@@ -3,64 +3,84 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Launcher : MonoBehaviour
-{ 
+{
+    [Header("Launcher Audio")]
+    public AudioClip release;
+    public AudioClip prelaunch;
+
     [Header("Launcher Settings")]
-    
+
     public float minLaunchForce = 500f;
     public float maxLaunchForce = 2000f;
     public float chargeSpeed = 1000f;
-    
+
     [Header("References")]
-    
+
     public Rigidbody ballRb;
     public Transform launchDirection;
     public Image powerBar;
-    
+
     private float currentLaunchForce;
     private bool isCharging;
 
-  private void Update() {
-    if (Input.GetKeyDown(KeyCode.Space)) {
-      isCharging = true;
-      currentLaunchForce = minLaunchForce;
-      Debug.Log("Charging");
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            isCharging = true;
+            currentLaunchForce = minLaunchForce;
+            Debug.Log("Charging");
+        }
+
+        if (isCharging && ballRb != null)
+        {
+            currentLaunchForce += chargeSpeed * Time.deltaTime;
+            currentLaunchForce = Mathf.Clamp(currentLaunchForce, minLaunchForce, maxLaunchForce);
+
+            // Animate The UI Power Bar
+            if (powerBar != null)
+            {
+                float fillValue = (currentLaunchForce - minLaunchForce) / (maxLaunchForce - minLaunchForce);
+                powerBar.fillAmount = fillValue;
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space) && isCharging && ballRb != null)
+        {
+            isCharging = false;
+            if (powerBar != null)
+            {
+                powerBar.fillAmount = 0f;
+            }
+            LaunchPinball();
+        }
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Ball"))
+        {
+            AudioManager.Instance.playClip(prelaunch);
+            ballRb = other.GetComponent<Rigidbody>();
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Ball"))
+        {
+            ballRb = null;
+        }
     }
 
-    if (isCharging && ballRb != null) {
-      currentLaunchForce += chargeSpeed * Time.deltaTime;
-      currentLaunchForce = Mathf.Clamp(currentLaunchForce, minLaunchForce, maxLaunchForce);
-
-      // Animate The UI Power Bar
-      if (powerBar != null) {
-        float fillValue = (currentLaunchForce - minLaunchForce) / (maxLaunchForce - minLaunchForce);
-          powerBar.fillAmount = fillValue;
-      }
+    void LaunchPinball()
+    {
+        if (ballRb != null && launchDirection != null)
+        {
+            AudioManager.Instance.playClip(release);
+            ballRb.AddForce(-launchDirection.right * currentLaunchForce);
+        }
+        else
+        {
+            Debug.LogWarning("PinBall or Launch Direction not assigned");
+        }
     }
-        
-    if (Input.GetKeyUp(KeyCode.Space) && isCharging && ballRb != null) {
-      isCharging= false;
-      if(powerBar!=null) {
-        powerBar.fillAmount = 0f;
-      }
-      LaunchPinball();
-    }
-  }
-  void OnTriggerEnter(Collider other) {
-    if (other.CompareTag("Ball")) {
-      ballRb = other.GetComponent<Rigidbody>();
-    }
-  }
-  private void OnTriggerExit(Collider other) {
-    if (other.CompareTag("Ball")) {
-      ballRb = null;
-    }
-  }
-
-  void LaunchPinball() {
-    if(ballRb != null && launchDirection != null) {
-        ballRb.AddForce(-launchDirection.right * currentLaunchForce);
-    } else {
-        Debug.LogWarning("PinBall or Launch Direction not assigned");
-    }
-  }
 }
