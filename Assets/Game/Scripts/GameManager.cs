@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : Singelton<GameManager> {
   #region
@@ -14,47 +15,53 @@ public class GameManager : Singelton<GameManager> {
   private CharacterData selectedCharacter; // Selected character and their power
   #endregion
 
-    private Action<int> OnScoreUpdate;
-    private void Start()
-    {
-        SpawnBall();
-    }
+  public Action<int> OnScoreUpdate;
+  public Action<int> OnLivesUpdate;
+  public Action<float> OnLauncherUpdate;
+  public Action<bool> OnAbilityUpdate;
+  private void Start()
+  {
+    SpawnBall();
+  }
 
-    public void AddScore(int value)
-    {
-        score += value;
-        OnScoreUpdate?.Invoke(score);
-        AudioManager.Instance.playClip(scoreSound);
-        if (abilityCharge < 1000)
-        {
-            abilityCharge += value;
-            if (abilityCharge > 1000) {abilityCharge = 1000;}
-            OnScoreUpdate?.Invoke(abilityCharge);
-        }
-    }
+  public void AddScore(int value)
+  {
+      score += value;
+      OnScoreUpdate?.Invoke(score);
+      AudioManager.Instance.playClip(scoreSound);
+      AddAbility(value);
+  }
+  private void AddAbility(int value) {
+    if (abilityCharge >= selectedCharacter.powerRequirement) return;
+    abilityCharge += value;
+    if (abilityCharge >= selectedCharacter.powerRequirement)
+      OnAbilityUpdate?.Invoke(true);
+  }
 
-    #region
-    // Balls
-    public void AddBall()
-    {
-        Debug.Log($"Balls in play: {++balls}");
-    }
-    public void RemoveBall()
-    {
-        if (--balls <= 0)
-        {
-            if (lives <= 0)
-                Debug.Log("Game Over");
-            else
-            {
-                SpawnBall();
-            }
-        }
-    }
-    private void SpawnBall()
-    {
-        lives--;
-        TableManager.Instance.SpawnBall();
-    }
-    #endregion
+  #region
+  // Balls
+  public void AddBall()
+  {
+      Debug.Log($"Balls in play: {++balls}");
+  }
+  public void RemoveBall()
+  {
+      if (--balls <= 0)
+      {
+          if (lives <= 0)
+              Debug.Log("Game Over");
+          else
+          {
+              SpawnBall();
+          }
+      }
+  }
+  private void SpawnBall()
+  {
+      lives--;
+      TableManager.Instance.SpawnBall();
+  }
+  #endregion
+
+  public Sprite GetCharImage() { return selectedCharacter.characterSprite; }
 }
