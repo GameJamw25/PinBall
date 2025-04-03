@@ -7,17 +7,17 @@ public class GameManager : Singelton<GameManager> {
   [Header("Score+ Audio")]
   public AudioClip scoreSound;
 
-    [Header("Game Start Audio")]
-    public AudioClip gameStartSound;
+  [Header("Game Start Audio")]
+  public AudioClip gameStartSound;
 
-    [Header("Game Over Audio")]
-    public AudioClip gameOverSound;
+  [Header("Game Over Audio")]
+  public AudioClip gameOverSound;
 
-    [Header("High Score Audio")]
-    public AudioClip highScoreSound;
+  [Header("High Score Audio")]
+  public AudioClip highScoreSound;
 
-    // Game stats and Values
-    private int score = 0;
+  // Game stats and Values
+  private int score = 0;
   public int abilityCharge = 0;
   private int balls = 0; // Balls in play
   private int lives = 5; // Lives left over
@@ -28,17 +28,14 @@ public class GameManager : Singelton<GameManager> {
   public Action<int> OnLivesUpdate;
   public Action<float> OnLauncherUpdate;
   public Action<bool> OnAbilityUpdate;
-  private void Start()
-  {
-    SpawnBall();
-  }
+  public Action OnGameOver;
+  private void Start() { }
 
-  public void AddScore(int value)
-  {
-      score += value;
-      OnScoreUpdate?.Invoke(score);
-      AudioManager.Instance.playClip(scoreSound);
-      AddAbility(value);
+  public void AddScore(int value) {
+    score += value;
+    OnScoreUpdate?.Invoke(score);
+    AudioManager.Instance.playClip(scoreSound);
+    AddAbility(value);
   }
   private void AddAbility(int value) {
     if (abilityCharge >= selectedCharacter.powerRequirement) return;
@@ -56,26 +53,28 @@ public class GameManager : Singelton<GameManager> {
 
   #region
   // Balls
-  public void AddBall()
-  {
-      Debug.Log($"Balls in play: {++balls}");
+  public void AddBall() {
+    Debug.Log($"Balls in play: {++balls}");
   }
-  public void RemoveBall()
-  {
-      if (--balls <= 0)
-      {
-          if (lives <= 0)
-              Debug.Log("Game Over");
-          else
-          {
-              SpawnBall();
-          }
+  public void RemoveBall() {
+    if (--balls <= 0) {
+      if (lives <= 0)
+        OnGameOver?.Invoke();
+      else {
+        SpawnBall();
       }
+    }
   }
-  private void SpawnBall()
-  {
+  private void SpawnBall() {
     OnLivesUpdate?.Invoke(--lives);
     TableManager.Instance?.SpawnBall();
+  }
+  public void StartFreshGame() {
+    lives = 5;
+    score = 0;
+    AddScore(0);
+    abilityCharge = 0;
+    SpawnBall();
   }
   #endregion
 

@@ -899,18 +899,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 677218220}
-    - target: {fileID: 797321784321936444, guid: f22d12471e00d9044939363ceeff3e7e, type: 3}
-      propertyPath: m_RenderMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 797321784321936444, guid: f22d12471e00d9044939363ceeff3e7e, type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 797321784321936444, guid: f22d12471e00d9044939363ceeff3e7e, type: 3}
-      propertyPath: m_VertexColorAlwaysGammaSpace
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2800842804076324609, guid: f22d12471e00d9044939363ceeff3e7e, type: 3}
       propertyPath: m_Name
       value: InGameUI
@@ -925,10 +913,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2824139228350779404, guid: f22d12471e00d9044939363ceeff3e7e, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2824139228350779404, guid: f22d12471e00d9044939363ceeff3e7e, type: 3}
-      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5458443376466282715, guid: f22d12471e00d9044939363ceeff3e7e, type: 3}

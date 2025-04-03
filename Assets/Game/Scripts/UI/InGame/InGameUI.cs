@@ -26,6 +26,7 @@ public class InGameUI : MonoBehaviour {
     GameManager.Instance.OnScoreUpdate -= UpdateScore;
     GameManager.Instance.OnLivesUpdate -= UpdateBites;
     GameManager.Instance.OnLauncherUpdate -= UpdateSlider;
+    GameManager.Instance.OnAbilityUpdate -= UpdateAbilityImage;
   }
 
   public void UpdateScore(int val) {
