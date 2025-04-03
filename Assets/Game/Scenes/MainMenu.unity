@@ -3595,7 +3595,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1574694466
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4509,6 +4509,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentMenu: {fileID: 0}
   startMenu: {fileID: 184294784}
+  colors:
+  - {fileID: 514978249}
+  - {fileID: 1084987403}
 --- !u!1 &1992626999
 GameObject:
   m_ObjectHideFlags: 0
@@ -4657,18 +4660,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 5059425681916585450, guid: 9d0a085f77da548459f79835f39f40c1, type: 3}
-      propertyPath: gameOverSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 9580307e8c15efc4586524673ad4e3eb, type: 3}
-    - target: {fileID: 5059425681916585450, guid: 9d0a085f77da548459f79835f39f40c1, type: 3}
-      propertyPath: gameStartSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 341a40b90b7105b44897e81ae65c4ab7, type: 3}
-    - target: {fileID: 5059425681916585450, guid: 9d0a085f77da548459f79835f39f40c1, type: 3}
-      propertyPath: highScoreSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 890f824a84aa6fd42bb8169d60729347, type: 3}
     - target: {fileID: 6200583317254526329, guid: 9d0a085f77da548459f79835f39f40c1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.67432266

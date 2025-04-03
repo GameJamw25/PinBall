@@ -2,7 +2,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-public class InGameUI : MonoBehaviour {
+public class InGameUI : Singelton<InGameUI> {
   [SerializeField]
   private TextMeshProUGUI scoreVal;
   [SerializeField]
@@ -22,9 +22,11 @@ public class InGameUI : MonoBehaviour {
     abilityImage.color = Color.clear;
   }
   void OnDisable() {
+    if (GameManager.Instance == null) return; // Avoids null reference if game is over
     GameManager.Instance.OnScoreUpdate -= UpdateScore;
     GameManager.Instance.OnLivesUpdate -= UpdateBites;
     GameManager.Instance.OnLauncherUpdate -= UpdateSlider;
+    GameManager.Instance.OnAbilityUpdate -= UpdateAbilityImage;
   }
 
   public void UpdateScore(int val) {

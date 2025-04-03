@@ -12,7 +12,7 @@ public class Ball : MonoBehaviour {
     GameManager.Instance.AddBall();
   }
   private void OnDisable() {
-    GameManager.Instance.RemoveBall();
+    GameManager.Instance?.RemoveBall();
   }
 }
 
