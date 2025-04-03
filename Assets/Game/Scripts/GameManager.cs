@@ -75,7 +75,7 @@ public class GameManager : Singelton<GameManager> {
   private void SpawnBall()
   {
     OnLivesUpdate?.Invoke(--lives);
-    TableManager.Instance.SpawnBall();
+    TableManager.Instance?.SpawnBall();
   }
   #endregion
 

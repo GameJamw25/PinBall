@@ -22,6 +22,7 @@ public class InGameUI : MonoBehaviour {
     abilityImage.color = Color.clear;
   }
   void OnDisable() {
+    if (GameManager.Instance == null) return; // Avoids null reference if game is over
     GameManager.Instance.OnScoreUpdate -= UpdateScore;
     GameManager.Instance.OnLivesUpdate -= UpdateBites;
     GameManager.Instance.OnLauncherUpdate -= UpdateSlider;
