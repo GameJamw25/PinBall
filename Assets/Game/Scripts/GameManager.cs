@@ -19,7 +19,7 @@ public class GameManager : Singelton<GameManager> {
     // Game stats and Values
     private int score = 0;
   public int abilityCharge = 0;
-  private int balls = 0; // Balls in play
+  public int balls = 0; // Balls in play
   private int lives = 5; // Lives left over
   public CharacterData selectedCharacter; // Selected character and their power
   #endregion
@@ -53,6 +53,16 @@ public class GameManager : Singelton<GameManager> {
       TableManager.Instance.SpawnGumball();
     }
   }
+
+    public void safeDestroy()
+    {
+        GameObject[] allBalls = GameObject.FindGameObjectsWithTag("Ball");
+        foreach (GameObject ball in allBalls)
+        {
+            Destroy(ball);
+        }
+        AudioManager.Instance.playClip(DeathZone.deathpublic);
+    }
 
   #region
   // Balls

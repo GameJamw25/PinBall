@@ -13,5 +13,9 @@ public class CharacterControls : MonoBehaviour
     if (Input.GetKey(KeyCode.E) && powerReady) {
       GameManager.Instance.UseAbility();
     }
+    if (Input.GetKey(KeyCode.Q) && GameManager.Instance.balls > 0)
+        {
+            GameManager.Instance.safeDestroy();
+        }
   }
 }
