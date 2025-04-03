@@ -8,8 +8,8 @@ public class CharacterControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.abilityCharge == 1000)
-        {
+        //if (GameManager.Instance.abilityCharge == 1000)
+        //{
             if (Input.GetKey(KeyCode.E))
             {
                 GameManager.Instance.abilityCharge = 0;
@@ -20,6 +20,6 @@ public class CharacterControls : MonoBehaviour
                     TableManager.Instance.SpawnGumball();
                 }
             }
-        }
+        //}
     }
 }
