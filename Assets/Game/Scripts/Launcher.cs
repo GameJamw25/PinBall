@@ -15,10 +15,8 @@ public class Launcher : MonoBehaviour
     public float chargeSpeed = 1000f;
 
     [Header("References")]
-
     public Rigidbody ballRb;
     public Transform launchDirection;
-    public Image powerBar;
 
     private float currentLaunchForce;
     private bool isCharging;
@@ -38,11 +36,7 @@ public class Launcher : MonoBehaviour
             currentLaunchForce = Mathf.Clamp(currentLaunchForce, minLaunchForce, maxLaunchForce);
 
             // Animate The UI Power Bar
-            if (powerBar != null)
-            {
-                float fillValue = (currentLaunchForce - minLaunchForce) / (maxLaunchForce - minLaunchForce);
-                powerBar.fillAmount = fillValue;
-            }
+            //GameManager.
         }
 
         if (Input.GetKeyUp(KeyCode.Space) && isCharging && ballRb != null)
