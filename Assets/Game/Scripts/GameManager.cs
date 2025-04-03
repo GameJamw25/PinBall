@@ -37,6 +37,13 @@ public class GameManager : Singelton<GameManager> {
     if (abilityCharge >= selectedCharacter.powerRequirement)
       OnAbilityUpdate?.Invoke(true);
   }
+  public void UseAbility() {
+    if (abilityCharge >= selectedCharacter.powerRequirement) {
+      abilityCharge = 0;
+      OnAbilityUpdate?.Invoke(false);
+      TableManager.Instance.SpawnGumball();
+    }
+  }
 
   #region
   // Balls
@@ -58,8 +65,8 @@ public class GameManager : Singelton<GameManager> {
   }
   private void SpawnBall()
   {
-      lives--;
-      TableManager.Instance.SpawnBall();
+    OnLivesUpdate?.Invoke(--lives);
+    TableManager.Instance.SpawnBall();
   }
   #endregion
 

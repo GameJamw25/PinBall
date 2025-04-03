@@ -19,6 +19,7 @@ public class InGameUI : MonoBehaviour {
     GameManager.Instance.OnLauncherUpdate += UpdateSlider;
     GameManager.Instance.OnAbilityUpdate += UpdateAbilityImage;
     charImage.sprite = GameManager.Instance.GetCharImage();
+    abilityImage.color = Color.clear;
   }
   void OnDisable() {
     GameManager.Instance.OnScoreUpdate -= UpdateScore;

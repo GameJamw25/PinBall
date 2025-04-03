@@ -5,7 +5,7 @@ public class TableManager : Singelton<TableManager>
     [SerializeField]
     private Transform ballSpawn;
     [SerializeField]
-    private Transform gumballSpawn;
+    private Transform[] gumballSpawns;
 
     public void SpawnBall()
     {
@@ -13,6 +13,7 @@ public class TableManager : Singelton<TableManager>
     }
     public void SpawnGumball()
     {
-        Instantiate(Resources.Load("Prefabs/Ball"), gumballSpawn.position, Quaternion.identity);
+      foreach(Transform gumballSpawn in gumballSpawns)
+        Instantiate(Resources.Load("Prefabs/Gumball"), gumballSpawn.position, Quaternion.identity);
     }
 }

@@ -3,50 +3,33 @@ using UnityEngine;
 
 public class Flappers : MonoBehaviour
 {
-    public HingeJoint joint;
-    public KeyCode inputKey = KeyCode.LeftArrow;
+  public Rigidbody rb;
+  public KeyCode inputKey = KeyCode.LeftShift;
+  public Vector3 rest;
+  public Vector3 target;
 
-    [SerializeField] private float motorForce = 2500f;
+  [SerializeField] private float impulseForce = 10f; // Force applied to the ball
 
-    [SerializeField] private float motorSpeed = 250f;
+  private void Start() {
+    rb = GetComponent<Rigidbody>();
+    rb.interpolation = RigidbodyInterpolation.Interpolate;
+    rb.MoveRotation(Quaternion.Euler(rest));
+  }
 
-    [SerializeField] private float impulseForce = 10f; // Force applied to the ball
+  private void Update(){
+    if (Input.GetKeyDown(inputKey))
+      rb.MoveRotation(Quaternion.Euler(target));
+    else if (Input.GetKeyUp(inputKey))
+      rb.MoveRotation(Quaternion.Euler(rest));
+  }
 
-    private void Start()
-    {
-        joint = GetComponent<HingeJoint>();
-        
-    }
-
-    private void Update()
-    {
-        JointMotor motor = joint.motor;
-
-        if (Input.GetKeyDown(inputKey))
-        {
-            motor.targetVelocity = motorSpeed;
-            Debug.Log("Flap");
-        }
-        else if (Input.GetKeyUp(inputKey))
-        {
-            motor.targetVelocity = -motorSpeed;
-        }
-
-        motor.force = motorForce;
-        motor.freeSpin = false;
-        joint.motor = motor;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ball")) // Ensure ball has the "Ball" tag
-        {
-            Rigidbody ballRb = collision.rigidbody;
-            if (ballRb != null)
-            {
-                Vector3 impactDirection = (collision.transform.position - transform.position).normalized;
-                ballRb.AddForce(impactDirection * impulseForce, ForceMode.Impulse);
-            }
-        }
-    }
+  //private void OnCollisionEnter(Collision collision) {
+  //  if (collision.gameObject.CompareTag("Ball")) {
+  //    Rigidbody ballRb = collision.rigidbody;
+  //    if (ballRb != null) {
+  //      Vector3 impactDirection = (collision.transform.position - transform.position).normalized;
+  //      ballRb.AddForce(impactDirection * impulseForce, ForceMode.Impulse);
+  //    }
+  //  }
+  //}
 }
