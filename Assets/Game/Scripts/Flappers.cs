@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class Flappers : MonoBehaviour
 {
-  public Rigidbody rb;
+    public AudioClip inputSound;
+    public Rigidbody rb;
   public KeyCode inputKey = KeyCode.LeftShift;
   public Vector3 rest;
   public Vector3 target;
@@ -17,10 +18,13 @@ public class Flappers : MonoBehaviour
   }
 
   private void Update(){
-    if (Input.GetKeyDown(inputKey))
-      rb.MoveRotation(Quaternion.Euler(target));
-    else if (Input.GetKeyUp(inputKey))
-      rb.MoveRotation(Quaternion.Euler(rest));
+        if (Input.GetKeyDown(inputKey))
+        {
+            rb.MoveRotation(Quaternion.Euler(target));
+            AudioManager.Instance.playClip(inputSound);
+        }
+        else if (Input.GetKeyUp(inputKey))
+            rb.MoveRotation(Quaternion.Euler(rest));
   }
 
   //private void OnCollisionEnter(Collision collision) {

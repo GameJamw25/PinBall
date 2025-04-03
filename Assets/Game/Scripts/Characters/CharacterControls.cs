@@ -3,9 +3,7 @@ using UnityEngine;
 
 public class CharacterControls : MonoBehaviour
 {
-    [Header("PowerUp Audio")]
-    public AudioClip powerup;
-  private bool powerReady;
+    private bool powerReady;
   private void Start() {
     GameManager.Instance.OnAbilityUpdate += val => powerReady = val;
   }

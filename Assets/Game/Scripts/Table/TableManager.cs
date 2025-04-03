@@ -13,7 +13,8 @@ public class TableManager : Singelton<TableManager>
     }
     public void SpawnGumball()
     {
-      foreach(Transform gumballSpawn in gumballSpawns)
+        AudioManager.Instance.playClip(GameManager.Instance.selectedCharacter.powerSound);
+        foreach (Transform gumballSpawn in gumballSpawns)
         Instantiate(Resources.Load("Prefabs/Gumball"), gumballSpawn.position, Quaternion.identity);
     }
 }

@@ -8,4 +8,5 @@ public class CharacterData : ScriptableObject {
   public string characterName;
   public string characterDescription;
   public int powerRequirement;
+    public AudioClip powerSound;
 }

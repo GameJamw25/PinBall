@@ -17,3 +17,4 @@ MonoBehaviour:
   characterName: Kandi
   characterDescription: God of Sweets
   powerRequirement: 30
+  powerSound: {fileID: 8300000, guid: 5d70c6d6d4bd7ea48affbe8a52b146ce, type: 3}
