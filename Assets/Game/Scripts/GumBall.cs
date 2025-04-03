@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class GumBall: Ball {
   //private Rigidbody rb;
-
+public int ms=15000;
   async void Start() {
-    await Task.Delay(30000);
+    await Task.Delay(ms);
     Debug.Log("Destroying Gumball");
     Destroy(gameObject);
     //rb = GetComponent<Rigidbody>();
