@@ -5,7 +5,8 @@ public class Bumpers : MonoBehaviour
     [Header("Bumper Audio")]
     public AudioClip bump;
 
-    [SerializeField, Range(10f,100f)] private float impulseForce = 30f; // Force applied to the ball
+    [SerializeField, Range(1f,100f)] private float impulseForce = 30f; // Force applied to the ball
+  public int score = 10;
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ball")) // Ensure ball has the "Ball" tag
@@ -14,9 +15,13 @@ public class Bumpers : MonoBehaviour
             if (ballRb != null)
             {
                 Vector3 impactDirection = (collision.transform.position - transform.position).normalized;
-                ballRb.AddForce(impactDirection * impulseForce, ForceMode.Impulse);
+                Vector3 projectedVector = impactDirection - Vector3.Dot(impactDirection, -transform.forward) * -transform.forward;
+                projectedVector.Normalize();
+
+        
+                ballRb.AddForce(projectedVector * impulseForce, ForceMode.VelocityChange);
                 AudioManager.Instance.playClip(bump);
-                GameManager.Instance.AddScore(10);
+                GameManager.Instance.AddScore(score);
             }
         }
     }

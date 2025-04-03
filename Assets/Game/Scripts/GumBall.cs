@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using UnityEditor.Rendering;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -9,6 +8,7 @@ public class GumBall: Ball {
 
   async void Start() {
     await Task.Delay(30000);
+    Debug.Log("Destroying Gumball");
     Destroy(gameObject);
     //rb = GetComponent<Rigidbody>();
 

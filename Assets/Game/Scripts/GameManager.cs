@@ -7,12 +7,21 @@ public class GameManager : Singelton<GameManager> {
   [Header("Score+ Audio")]
   public AudioClip scoreSound;
 
-  // Game stats and Values
-  private int score = 0;
-  private int abilityCharge = 0;
+    [Header("Game Start Audio")]
+    public AudioClip gameStartSound;
+
+    [Header("Game Over Audio")]
+    public AudioClip gameOverSound;
+
+    [Header("High Score Audio")]
+    public AudioClip highScoreSound;
+
+    // Game stats and Values
+    private int score = 0;
+  public int abilityCharge = 0;
   private int balls = 0; // Balls in play
   private int lives = 5; // Lives left over
-  private CharacterData selectedCharacter; // Selected character and their power
+  public CharacterData selectedCharacter; // Selected character and their power
   #endregion
 
   public Action<int> OnScoreUpdate;
@@ -37,6 +46,13 @@ public class GameManager : Singelton<GameManager> {
     if (abilityCharge >= selectedCharacter.powerRequirement)
       OnAbilityUpdate?.Invoke(true);
   }
+  public void UseAbility() {
+    if (abilityCharge >= selectedCharacter.powerRequirement) {
+      abilityCharge = 0;
+      OnAbilityUpdate?.Invoke(false);
+      TableManager.Instance.SpawnGumball();
+    }
+  }
 
   #region
   // Balls
@@ -58,8 +74,8 @@ public class GameManager : Singelton<GameManager> {
   }
   private void SpawnBall()
   {
-      lives--;
-      TableManager.Instance.SpawnBall();
+    OnLivesUpdate?.Invoke(--lives);
+    TableManager.Instance.SpawnBall();
   }
   #endregion
 

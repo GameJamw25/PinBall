@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7419596991010057880}
   - component: {fileID: 7707211814523133164}
   m_Layer: 5
-  m_Name: CharacterIndicator
+  m_Name: CharacterDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -528,7 +528,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.251
+  m_FillAmount: 0.473
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -545,6 +545,7 @@ GameObject:
   - component: {fileID: 797321784321936444}
   - component: {fileID: 2666035446232555424}
   - component: {fileID: 9037467840390671331}
+  - component: {fileID: 5632628895377833410}
   m_Layer: 5
   m_Name: InGameUI
   m_TagString: Untagged
@@ -643,6 +644,23 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5632628895377833410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2800842804076324609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c757fda5c7f7e2c4faa56ad8be6486a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreVal: {fileID: 7785835875622742019}
+  bitesVal: {fileID: 7658964234815791995}
+  slider: {fileID: 1362517624482046875}
+  abilityImage: {fileID: 5346825636795475128}
+  charImage: {fileID: 7707211814523133164}
 --- !u!1 &3028233068941448796
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,7 +1034,7 @@ GameObject:
   - component: {fileID: 380012179319955401}
   - component: {fileID: 5346825636795475128}
   m_Layer: 5
-  m_Name: EButton
+  m_Name: AbilityIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1126,7 +1144,7 @@ GameObject:
   - component: {fileID: 1210195851450554633}
   - component: {fileID: 1362517624482046875}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: PowerSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1201,7 +1219,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.251
+  m_Value: 0.473
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
