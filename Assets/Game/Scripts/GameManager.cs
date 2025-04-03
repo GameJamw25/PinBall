@@ -8,10 +8,10 @@ public class GameManager : Singelton<GameManager> {
 
   // Game stats and Values
   private int score = 0;
-  private int abilityCharge = 0;
+  public int abilityCharge = 0;
   private int balls = 0; // Balls in play
   private int lives = 5; // Lives left over
-  private CharacterData selectedCharacter; // Selected character and their power
+  public CharacterData selectedCharacter; // Selected character and their power
   #endregion
 
     private Action<int> OnScoreUpdate;
