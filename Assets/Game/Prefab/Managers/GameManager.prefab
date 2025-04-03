@@ -45,3 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreSound: {fileID: 8300000, guid: f7ef8f53f41a7974b8772fda66319907, type: 3}
+  abilityCharge: 0
+  selectedCharacter: {fileID: 11400000, guid: 3fd4e98249b80fd4583ec1c6647c89e0, type: 2}

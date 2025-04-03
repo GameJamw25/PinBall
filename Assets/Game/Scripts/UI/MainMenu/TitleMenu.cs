@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TitleMenu : EchoMenu {
   [SerializeField]
@@ -7,7 +8,7 @@ public class TitleMenu : EchoMenu {
   private EchoMenu creditsMenu;
 
 
-  public void OnStartClick() { Debug.Log("Start Game"); }
+  public void OnStartClick() { SceneManager.LoadScene("Assets"); }
   public async void OnOptionsClick() { await MenuManager.Instance.OpenMenu(optionsMenu); }
   public async void OnCreditsClick() { await MenuManager.Instance.OpenMenu(creditsMenu); }
   public void OnExitClick() {
@@ -16,12 +17,5 @@ public class TitleMenu : EchoMenu {
     #else
         Application.Quit();
     #endif
-  }
-
-  // Start is called once before the first execution of Update after the MonoBehaviour is created
-
-  // Update is called once per frame
-  void Update() {
-
   }
 }
