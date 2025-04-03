@@ -7,4 +7,5 @@ public class CharacterData : ScriptableObject {
   public Sprite characterSprite;
   public string characterName;
   public string characterDescription;
+  public int powerRequirement;
 }
