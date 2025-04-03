@@ -10,9 +10,9 @@ public class BgScroll : MonoBehaviour {
 
   private void Awake() {
     _image = GetComponent<Image>();
-    _image.SetNativeSize();
-    originalSize = _image.rectTransform.sizeDelta;
-    _image.rectTransform.sizeDelta = new(1920,1080);
+    //_image.SetNativeSize();
+    //originalSize = _image.rectTransform.sizeDelta;
+    //_image.rectTransform.sizeDelta = new(1920,1080);
   }
   void Start() {
     material = new Material(_image.material);
