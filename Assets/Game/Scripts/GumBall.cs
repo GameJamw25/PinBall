@@ -6,7 +6,8 @@ using UnityEngine;
 public class GumBall: Ball {
   //private Rigidbody rb;
 public int ms=15000;
-  async void Start() {
+  protected override async void Start() {
+        base.Start();
     await Task.Delay(ms);
     Debug.Log("Destroying Gumball");
     Destroy(gameObject);

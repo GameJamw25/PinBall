@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 
 public class Ball : MonoBehaviour {
-    void Start() {
+    virtual protected void Start() {
     Renderer rb = GetComponent<Renderer>();
     int i = Random.Range(1, 5);
     rb.material = Resources.Load<Material>("Timbits/Timbit" + i);
