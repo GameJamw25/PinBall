@@ -7,8 +7,17 @@ public class GameManager : Singelton<GameManager> {
   [Header("Score+ Audio")]
   public AudioClip scoreSound;
 
-  // Game stats and Values
-  private int score = 0;
+    [Header("Game Start Audio")]
+    public AudioClip gameStartSound;
+
+    [Header("Game Over Audio")]
+    public AudioClip gameOverSound;
+
+    [Header("High Score Audio")]
+    public AudioClip highScoreSound;
+
+    // Game stats and Values
+    private int score = 0;
   public int abilityCharge = 0;
   private int balls = 0; // Balls in play
   private int lives = 5; // Lives left over
