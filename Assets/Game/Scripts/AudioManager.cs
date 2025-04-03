@@ -13,7 +13,9 @@ public class AudioManager : Singelton<AudioManager>
     public AudioMixerGroup musicMix;
     public AudioSource musicPlayer;
     public List<AudioSource> soundPlayers;
-    
+    public AudioClip menuSelection;
+    public AudioClip gameEnter;
+
     private AudioLooper activeLoop;
 
     public void SetVolume(string key, float volume)
@@ -68,6 +70,16 @@ public class AudioManager : Singelton<AudioManager>
         foreach (string key in keys) {
             AudioMixer.SetFloat(key, Mathf.Log10(PlayerPrefs.GetFloat(key, 1)) * 20);
         }
+    }
+
+    public void menuSelectSound()
+    {
+        playClip(menuSelection);
+    }
+
+    public void gameEnterSound()
+    {
+        playClip(gameEnter);
     }
 
     public static T CopyComponent<T>(T original, GameObject destination) where T : Component
