@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[DefaultExecutionOrder(-10)]
 public class Singelton<T> : MonoBehaviour where T : MonoBehaviour
 {
    private static T _instance;

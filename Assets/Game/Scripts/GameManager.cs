@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 
-[DefaultExecutionOrder(-10)]
 public class GameManager : Singelton<GameManager> {
   #region
   // Game stats and Values
@@ -39,5 +38,5 @@ public class GameManager : Singelton<GameManager> {
     lives--;
     TableManager.Instance.SpawnBall();
   }
-  #endregion 
+  #endregion
 }
